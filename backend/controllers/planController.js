@@ -49,7 +49,7 @@ export const updatePlan = async (req, res) => {
     const plan_id = req.params.plan_id;
     const { plan_name, duration, price } = req.body;
 
-    // Verify ownership
+    // Verifying owner
     const [plan] = await pool.query(
       "SELECT p.* FROM plans p JOIN gyms g ON p.gym_id = g.gym_id WHERE p.plan_id = ? AND g.admin_id = ?",
       [plan_id, admin_id]

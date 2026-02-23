@@ -45,7 +45,7 @@ export const updateGym = async (req, res) => {
     const gym_id = req.params.gym_id;
     const { gym_name, address, phone } = req.body;
 
-    // Check gym indeed belongs to this admin
+    // Check gym belongs to this admin
     const [gyms] = await pool.query(
       "SELECT * FROM gyms WHERE gym_id = ? AND admin_id = ?",
       [gym_id, admin_id]
@@ -68,14 +68,14 @@ export const deleteGym = async (req, res) => {
     const admin_id = req.user.admin_id;
     const gym_id = req.params.gym_id;
 
-    // Optionally: Check gym exists and belongs to admin
+    // Check gym exists and belongs to admin
     const [gyms] = await pool.query(
       "SELECT * FROM gyms WHERE gym_id = ? AND admin_id = ?",
       [gym_id, admin_id]
     );
     if (gyms.length === 0) return res.status(404).json({ message: "Gym not found or not owned by you." });
 
-    // Optionally: Add cascade logic if you want to delete trainers/members/plans for this gym
+
 
     await pool.query(
       "DELETE FROM gyms WHERE gym_id = ? AND admin_id = ?",

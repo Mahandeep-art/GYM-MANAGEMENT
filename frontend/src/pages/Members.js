@@ -210,7 +210,7 @@ const Members = () => {
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">{member.trainer_name || '-'}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <span className={`px-2.5 py-0.5 inline-flex text-xs font-medium rounded-full ${member.membership_status === 'active' ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}`}>
-                                            {member.membership_status ? member.membership_status.toUpperCase() : 'INACTIVE'}
+                                            {member.membership_status.toUpperCase()}
                                         </span>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-3">

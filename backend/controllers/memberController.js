@@ -56,7 +56,7 @@ export const updateMember = async (req, res) => {
     const member_id = req.params.member_id;
     const { name, phone, email, gender, trainer_id, join_date, membership_status } = req.body;
 
-    // Entity must belong to admin's gym
+    // check Entity belongs to admins gym
     const [member] = await pool.query(
       `SELECT m.* FROM members m JOIN gyms g ON m.gym_id = g.gym_id WHERE m.member_id = ? AND g.admin_id = ?`,
       [member_id, admin_id]

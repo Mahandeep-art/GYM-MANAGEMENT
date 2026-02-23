@@ -11,14 +11,15 @@ export const registerAdmin = async  (req,res)=>{
         if (!email || !password || !username)
             return res.status(400).json({ message: "All fields required" });
 
-
-        const [userExists] = await pool.query(
+        // Check if email already exists
+        const [emailExists] = await pool.query(
         "SELECT * FROM Admin WHERE email = ?",
         [email]
         );
 
-        if (userExists.length > 0)
-        return res.status(400).json({ message: "User already exists" });
+        if (emailExists.length > 0)
+        return res.status(400).json({ message: "Email already registered" });
+
 
         const hashedPassword = await bcrypt.hash(password,10);
 

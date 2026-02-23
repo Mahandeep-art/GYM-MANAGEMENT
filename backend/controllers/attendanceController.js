@@ -6,7 +6,7 @@ export const markAttendance = async (req, res) => {
     const admin_id = req.user.admin_id;
     const { member_id, date, status } = req.body;
 
-    // Verify member belongs to admin's gym before inserting
+    // Verify member belongs to admin's gym 
     const [memberCheck] = await pool.query(`
       SELECT m.member_id 
       FROM members m

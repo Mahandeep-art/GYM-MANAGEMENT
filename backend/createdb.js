@@ -6,8 +6,8 @@ dotenv.config();
 async function createDatabase() {
     const connection = await mysql.createConnection({
         host: process.env.DB_HOST,
-        user: process.env.DB_USER ,
-        password: process.env.DB_PASSWORD 
+        user: process.env.DB_USER,
+        password: process.env.DB_PASS
     });
 
     await connection.query(`CREATE DATABASE IF NOT EXISTS gym;`);
@@ -78,7 +78,7 @@ async function createDatabase() {
             gender ENUM('male','female','other'),
             trainer_id INT,
             join_date DATE DEFAULT (CURRENT_DATE),
-            membership_status ENUM('active','expired','pending') DEFAULT 'active',
+            membership_status ENUM('active','inactive') DEFAULT 'inactive',
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (gym_id) REFERENCES gyms(gym_id) ON DELETE CASCADE,
             FOREIGN KEY (trainer_id) REFERENCES trainers(trainer_id) ON DELETE SET NULL

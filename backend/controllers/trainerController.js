@@ -21,7 +21,7 @@ export const addTrainer = async (req, res) => {
   }
 };
 
-// Get Trainers (by Gym or All for Admin)
+// Get Trainers 
 export const getTrainers = async (req, res) => {
   try {
     const admin_id = req.user.admin_id;
